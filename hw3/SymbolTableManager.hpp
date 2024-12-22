@@ -23,6 +23,7 @@ class SemanticContext {
     std::vector<std::unordered_map<std::string, Symbol>> scopes; /// Stack of symbol tables, one per scope.
     bool insideLoop = false; /// Tracks whether the current code is inside a loop.
     bool mainDefined = false; /// Tracks whether the 'main' function is defined.
+    ast::BuiltInType currentFunctionReturnType; // Tracks the return type of the current function.
 
 public:
     /// Constructor: Initializes the global scope and registers library functions.
@@ -58,6 +59,10 @@ public:
 
     /// Provides access to the scope printer for diagnostics.
     output::ScopePrinter &getPrinter();
+
+    void setCurrentFunctionReturnType(ast::BuiltInType type);
+
+    ast::BuiltInType getCurrentFunctionReturnType() const;
 };
 
 #endif // SYMBOLTABLEMANAGER_HPP

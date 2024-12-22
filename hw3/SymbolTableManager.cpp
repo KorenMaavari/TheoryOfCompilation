@@ -60,3 +60,11 @@ bool SemanticContext::isInsideLoop() const { return insideLoop; }
 
 /// Provides access to the ScopePrinter for debugging.
 output::ScopePrinter &SemanticContext::getPrinter() { return printer; }
+
+void SemanticContext::setCurrentFunctionReturnType(ast::BuiltInType type) {
+    currentFunctionReturnType = type;
+}
+
+ast::BuiltInType SemanticContext::getCurrentFunctionReturnType() const {
+    return currentFunctionReturnType;
+}
