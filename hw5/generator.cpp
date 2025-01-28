@@ -2,9 +2,8 @@
 
 extern output::CodeBuffer buffer;
 extern std::vector<std::shared_ptr<ast::Node>> tables = outputAndSymbolTable::mishtaneMisgeret;
- 
-void LLVM_code_generator::globalFunctions()
-{
+
+void LLVM_code_generator::globalFunctions() {
     buffer.emit("@.DIV_BY_ZERO_ERROR = internal constant [23 x i8] c\"Error division by zero\\00\"");
     buffer.emit("define void @check_division(i32) {");
     buffer.emit("%valid = icmp eq i32 %0, 0");
@@ -17,7 +16,6 @@ void LLVM_code_generator::globalFunctions()
     buffer.emit("ret void");
     buffer.emit("}");
 }
-
 
 string LLVM_code_generator::generate_load_var(string rbp, int offset) {
     string reg = buffer.freshVar();
@@ -92,21 +90,12 @@ void LLVM_code_generator::assign_code(Exp *exp, int offset, bool is_bool) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-/* 
+/*
 // Generates llvm code of initializing a variable in FanC
 void LLVM_code_generator::InitializeIntVariableConvertor(Num numExpression, int value)
 {
     // numExpression = "int x = 5";
-    string registerName = buff.freshVar(); // t0  t1 t2 
+    string registerName = buff.freshVar(); // t0  t1 t2
     NumVariable newVariable;
     newVariable.variable_name = numExpression.erekhBituy; // newVariable.variable_name = x
     if (numExpression.erekhMispar != NULL)
@@ -137,7 +126,7 @@ void LLVM_code_generator::InitializeBoolVariableConvertor(Exp* boolExpression, b
 
 void LLVM_code_generator::storeVariable(string& basePointer, int offset, string& registerName)
 {
-    
+
     string registerPtr = buff.freshVar();
 
 } */

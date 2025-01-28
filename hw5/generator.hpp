@@ -1,53 +1,46 @@
 #ifndef _GENERATOR_HPP_
 #define _GENERATOR_HPP_
 #include "hw5-supplied/output.hpp"
-#include <vector>
 #include "outputAndSymbolTable.hpp"
+#include <vector>
 using namespace std;
 using namespace ast;
 
 using std::string;
 
-
-
-
-//template <typename T>
+// template <typename T>
 class LLVM_code_generator {
-    public:
-        void globalFunctions();
-        string generate_load_var(string rbp, int offset);
-        void generate_store_var(string rbp, int offset, string reg);
-            void binop_code(Exp* res, const Exp& operand1, const Exp& operand2, const string& op);
-         void relop_code(Exp* res, const Exp* operand1, const Exp* operand2, const string& op);
-            void bool_eval_code(Exp* res, const Exp* operand1, const Exp* operand2, const string& op, const string& label);
-        void assign_code(Exp* exp, int offset, bool is_bool);
+  public:
+    void globalFunctions();
+    string generate_load_var(string rbp, int offset);
+    void generate_store_var(string rbp, int offset, string reg);
+    void binop_code(Exp *res, const Exp &operand1, const Exp &operand2, const string &op);
+    void relop_code(Exp *res, const Exp *operand1, const Exp *operand2, const string &op);
+    void bool_eval_code(Exp *res, const Exp *operand1, const Exp *operand2, const string &op, const string &label);
+    void assign_code(Exp *exp, int offset, bool is_bool);
 
-
-
-
-
-        /*
-         output::CodeBuffer buff;
-        vector<T> variablesStack;
-        void InitializeIntVariableConvertor(Num numExpression);
-        void InitializeBoolVariableConvertor(Bool boolExpression);
-        void LoadVariableFromStack(Binop expression)
-        void StoreVariableInStack()
-        //void storeVariable(string& basePointer, int offset, string& registerName);
-        void AccessToVariableConvertor();
-        void ArithmeticExpressionConvertor();
-        void NumericOverflowConvertor();
-        void BooleanExpressionConvertor();
-        void FunctionCallConvertor();
-        void IfConvertor();
-        void WhileConvertor();
-        void BreakConvertor();
-        void ContinueConvertor();
-        void ReturnConvertor();
-        void LibraryFunctionsConvertor();
-        void PrintiConvertor(); // Mind the i
-        void PrintConvertor(); // Mind the lack of i
-        void ErrorConvertor(); // not sure */
+    /*
+     output::CodeBuffer buff;
+    vector<T> variablesStack;
+    void InitializeIntVariableConvertor(Num numExpression);
+    void InitializeBoolVariableConvertor(Bool boolExpression);
+    void LoadVariableFromStack(Binop expression)
+    void StoreVariableInStack()
+    //void storeVariable(string& basePointer, int offset, string& registerName);
+    void AccessToVariableConvertor();
+    void ArithmeticExpressionConvertor();
+    void NumericOverflowConvertor();
+    void BooleanExpressionConvertor();
+    void FunctionCallConvertor();
+    void IfConvertor();
+    void WhileConvertor();
+    void BreakConvertor();
+    void ContinueConvertor();
+    void ReturnConvertor();
+    void LibraryFunctionsConvertor();
+    void PrintiConvertor(); // Mind the i
+    void PrintConvertor(); // Mind the lack of i
+    void ErrorConvertor(); // not sure */
 };
 
 /* class NumVariable{
@@ -71,7 +64,7 @@ void LLVM_code_generator<T>::InitializeIntVariableConvertor(Num numExpression)
 {
     // numExpression = "int x = 5"; int x = 4 + y;
     NumVariable newNumVariable;
-    newNumVariable.registerName = buff.freshVar(); // t0  t1 t2 
+    newNumVariable.registerName = buff.freshVar(); // t0  t1 t2
     newNumVariable.variable_name = numExpression.erekhBituy; // newVariable.variable_name = x
     if (numExpression.erekhMispar != NULL)
     {
@@ -116,7 +109,7 @@ void LLVM_code_generator<T>::LoadVariableFromStack(Binop expression)
         if (variablesStack<NumVariable>[i]->variable_name == expression.leftHandSide.erekhBituy) // we found the FanC variable x in the stack
         {
             newRegisterName = buff.freshVar();
-            buff.emit(newRegisterName + " = load i32, i32* " + variablesStack[i].registerName); 
+            buff.emit(newRegisterName + " = load i32, i32* " + variablesStack[i].registerName);
             buff.emit(newRegisterName + " = add i32 " +  newRegisterName + ", " + expression.rightHandSide); // buff.emit(%t2 = add i32 0, 0)
         }
     }
@@ -125,7 +118,7 @@ void LLVM_code_generator<T>::LoadVariableFromStack(Binop expression)
 
 void LLVM_code_generator::storeVariable(string& basePointer, int offset, string& registerName)
 {
-    
+
     string registerPtr = buff.freshVar();
 
 }
